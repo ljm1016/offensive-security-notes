@@ -17,7 +17,8 @@ Kick these off in parallel (separate terminals/tabs) — they're slow and you ca
 - [ ] Check `robots.txt` and `sitemap.xml` — disallowed paths are often the interesting ones
 - [ ] Check cookies set (dev tools → Application/Storage) — session tokens, anything that looks decodable (JWT?)
 - [ ] `curl -i` the root and a couple pages → server header, `X-Powered-By`, anything forgeable → [[Headers]]
-- [ ] Check and replace unfiltered tags/elements to see if you can get alerts: <img src=x onerror=alert(document.domain)>
+- [ ] Check and replace unfiltered tags/elements to see if you can get alerts: `<img src=x onerror=alert(document.domain)>` → [[Cross-Site Scripting]]
+- [ ] Note how state is tracked (cookie? JWT? both?) and what the normal login/permission-check flow looks like → [[Front End, Back End & State]]
 
 ## Phase 1 — Fingerprint the stack
 - [ ] `whatweb` / [[Wappalyzer]] — CMS, framework, language, web server + version
@@ -32,7 +33,7 @@ Kick these off in parallel (separate terminals/tabs) — they're slow and you ca
 
 ## Phase 3 — Catalog every input before you test anything
 - [ ] Every form field, query param, header, cookie, and JSON body key → [[HTTP Requests]]
-- [ ] Get a proxy in the middle so you can intercept/replay/tamper → [[Burp Suite]]
+- [ ] Get a proxy in the middle so you can intercept/replay/tamper — Burp Repeater or Caido Replay → [[HTTP Requests]]
 - [ ] Replay/forge requests from the command line → [[Headers]]
 
 ## Phase 4 — Cheap wins before deep testing
@@ -42,14 +43,32 @@ Kick these off in parallel (separate terminals/tabs) — they're slow and you ca
 - [ ] JS files — search them for hardcoded API keys, hidden endpoints, comments
 
 ## Phase 5 — Input testing sweep
-Go input by input from Phase 3, try each of these:
-- [ ] [[Server Side Template Injection]] — already documented, test template-looking fields first
-- [ ] [[SQL Injection]] — manual probe (`'`, `"`, `1=1`), then sqlmap once you have a live candidate
-- [ ] [[Cross-Site Scripting]] — reflected/stored, anywhere input gets echoed back
-- [ ] [[Local File Inclusion]] / path traversal — any param that looks like a filename or path
-- [ ] [[Command Injection]] — any param that might reach a shell call
-- [ ] [[IDOR]] — any param that looks like an ID/reference to something else's data
-- [ ] [[File Upload Vulnerabilities]] — if there's an upload feature at all
+Go input by input from Phase 3. OWASP Top 10:2025 categories this vault has full write-ups for — see [[Front End, Back End & State]] for the complete list:
+
+**A05 Injection** — anywhere input reaches an interpreter:
+- [ ] [[Server Side Template Injection]] — test template-looking fields first (`{{7*7}}`)
+- [ ] [[SQL Injection]] — manual probe (`'`, `"`, `OR 1=1 --`), then sqlmap once you have a live candidate
+- [ ] [[NoSQL Injection]] — JSON APIs: try an operator object (`{"$ne": null}`) where a plain value is expected
+- [ ] [[Command Injection]] — any param that might reach a shell call (`; id`, `| id`)
+- [ ] [[Local File Inclusion]] — path traversal, `../` sequences, normalization bypass
+
+**A01 Broken Access Control:**
+- [ ] [[Broken Access Control]] — IDOR (change a record ID while authenticated as someone else), hidden-endpoint/method bypass, cookie/JWT privilege tampering
+- [ ] [[SSRF]] — any feature that fetches a URL server-side on your behalf (webhooks, "import from URL," link previews)
+
+**A07 Authentication Failures** — if there's a login:
+- [ ] [[Session & Cookie Security]] — fixation, hijacking, cookie flags
+- [ ] [[MFA & Password Reset]] — skippable 2FA step, weak reset tokens, reset-link poisoning
+- [ ] [[JWT]] — decode any token, test tampering and whether logout actually revokes it
+- [ ] [[SSO & OAuth]] — if login redirects to a separate identity provider
+
+**Browser-boundary attacks:**
+- [ ] [[CSRF]] — any state-changing GET, or a POST with no origin/token check
+- [ ] [[CORS]] — check `Access-Control-Allow-Origin` on any API the frontend calls cross-origin
+- [ ] [[Clickjacking]] — missing `frame-ancestors`/`X-Frame-Options` on anything with a consequential click
+
+**Other:**
+- [ ] [[File Upload Vulnerabilities]] — extension/MIME bypass, random names, safe serving, storage outside web root
 
 ## Phase 6 — Escalate to shell
 - [ ] Once something gives code execution or arbitrary file write, get a listener up → [[netcat]]
@@ -62,3 +81,4 @@ Go input by input from Phase 3, try each of these:
 Related reference:
 - [[Ports]] — what's likely running alongside the web port (80/443 rarely stands alone)
 - [[Tools Index]] — tool-specific notes
+- Defense recap, OWASP-category by OWASP-category, is at the bottom of [[Front End, Back End & State]] and in each individual note — retest the original failure *and* the legitimate feature after every fix, not just that the exploit stopped working

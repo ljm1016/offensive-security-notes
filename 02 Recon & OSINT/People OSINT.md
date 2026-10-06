@@ -30,6 +30,3 @@ maigret jsmith1987 --html
 - No connection requests, messages, or follows
 - Never authenticate to a system belonging to the subject
 - Record the source and date for every claim — published material changes and disappears. **Archive the page at the moment of collection** (archive.org, archive.today); an unsourced, undated claim can't be checked later.
-
-## Initial access context
-Verizon's 2025 DBIR: roughly 60% of breaches involved a human element, credential abuse a leading initial-access vector, vulnerability exploitation reaching 20%. Phishing captures credentials or delivers malware — a public profile shows which details create avoidable exposure to it. See [[Images, Documents & Geolocation]] for the image/document side of this, and [[Collection Methods & Evidence]] for how to record any of it.

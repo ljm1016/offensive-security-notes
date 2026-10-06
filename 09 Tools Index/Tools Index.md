@@ -39,7 +39,26 @@ Post Exploitation → [[Post-Exploitation Basics]] (06 Post Exploitation):
 
 Metasploit overview (module types, why/when, basics common to all three phases): [[Metasploit]]
 
-Web (command-syntax cards, live in this folder):
+Web Application Security → [[Where to even start]] (04 Web Applications):
+- [[HTTP Requests]] — methods, status codes, URL anatomy, Burp Repeater/Caido Replay, curl
+- [[Front End, Back End & State]] — client/server split, cookies/sessions, OWASP Top 10:2025 map, defense recap
+- [[Broken Access Control]] — IDOR, hidden-endpoint/method bypass, cookie tampering (A01)
+- [[Session & Cookie Security]] — fixation, hijacking, cookie flags (A07)
+- [[MFA & Password Reset]] (A07)
+- [[JWT]] — tampering, validation, revocation (A07)
+- [[SSO & OAuth]] — OIDC authorization code flow, PKCE, account linking (A07)
+- [[Cross-Site Scripting]] — reflected, stored, DOM-based, CSS injection, CSP
+- [[CSRF]]
+- [[CORS]]
+- [[Clickjacking]]
+- [[SQL Injection]] — UNION, blind, prepared statements (A05)
+- [[NoSQL Injection]] (A05)
+- [[Command Injection]] (A05)
+- [[Server Side Template Injection]] (A05)
+- [[SSRF]]
+- [[Headers]]
+
+Web (command-syntax and tool cards, live in this folder):
 - [[httpx]]
 - [[gospider]]
 - [[Hakrawler]]
@@ -48,6 +67,10 @@ Web (command-syntax cards, live in this folder):
 - [[gobuster]]
 - [[ffuf]]
 - [[Nuclei]]
+- [[Wappalyzer]] — tech stack fingerprinting
+- [[wpscan]] — WordPress-specific scanning
+- [[Wordlists]] — dictionaries for fuzzing
+- [[sqlmap]] — automated SQL injection detection and exploitation
 
 C2:
 - [[Armitage]]

@@ -1,4 +1,4 @@
-#tools-index/web
+dig #tools-index/web
 
 #### `dig` is a powerful, flexible command-line tool used for querying DNS name servers
 
