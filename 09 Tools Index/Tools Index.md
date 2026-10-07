@@ -71,6 +71,7 @@ Web (command-syntax and tool cards, live in this folder):
 - [[wpscan]] — WordPress-specific scanning
 - [[Wordlists]] — dictionaries for fuzzing
 - [[sqlmap]] — automated SQL injection detection and exploitation
+- [[Burp Suite]] — interactive proxy, request tampering, systematic testing
 
 C2:
 - [[Armitage]]

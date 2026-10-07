@@ -51,13 +51,13 @@ The status code reports what the server decided — it does not show what data w
 | Task | Tool | First operation |
 | --- | --- | --- |
 | Observe the browser | Chrome DevTools | Network tab: select a request, inspect headers and response |
-| Change and repeat one request | Burp Repeater / Caido Replay | Keep the same login, edit one value, compare the result |
+| Change and repeat one request | [[Burp Suite]] Repeater / Caido Replay | Keep the same login, edit one value, compare the result |
 | Make a reproducible request | curl | Display response headers and body directly |
 
 ```bash
 curl -i 'http://127.0.0.1:8766/api/courses?code=CYBR401'
 ```
-A proxy (Burp/Caido) sits between browser and application; Replay resends a captured request without going back through the form — this is how you test every input systematically (see [[Where to even start]] Phase 3).
+A proxy (Burp/Caido) sits between browser and application; Repeater resends a captured request without going back through the form — this is how you test every input systematically (see [[Where to even start]] Phase 3).
 
 *note to include any session cookies into your requests when you make them as needed:*
 

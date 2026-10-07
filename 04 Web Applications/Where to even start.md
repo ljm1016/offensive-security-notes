@@ -33,7 +33,7 @@ Kick these off in parallel (separate terminals/tabs) — they're slow and you ca
 
 ## Phase 3 — Catalog every input before you test anything
 - [ ] Every form field, query param, header, cookie, and JSON body key → [[HTTP Requests]]
-- [ ] Get a proxy in the middle so you can intercept/replay/tamper — Burp Repeater or Caido Replay → [[HTTP Requests]]
+- [ ] Get a proxy in the middle so you can intercept/replay/tamper → [[Burp Suite]] (full guide with setup & workflows)
 - [ ] Replay/forge requests from the command line → [[Headers]]
 
 ## Phase 4 — Cheap wins before deep testing
