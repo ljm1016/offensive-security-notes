@@ -50,7 +50,9 @@ Go input by input from Phase 3. OWASP Top 10:2025 categories this vault has full
 - [ ] [[SQL Injection]] — manual probe (`'`, `"`, `OR 1=1 --`), then sqlmap once you have a live candidate
 - [ ] [[NoSQL Injection]] — JSON APIs: try an operator object (`{"$ne": null}`) where a plain value is expected
 - [ ] [[Command Injection]] — any param that might reach a shell call (`; id`, `| id`)
-- [ ] [[Local File Inclusion]] — path traversal, `../` sequences, normalization bypass
+- [ ] [[Local File Inclusion]] — path traversal, `../` sequences, normalization bypass → escalate via [[LFI Exploitation Chains]]
+- [ ] [[Remote File Inclusion]] — if file inclusion accepts URLs
+- [ ] [[XXE Injection]] — anywhere XML is parsed (uploads, config, SOAP)
 
 **A01 Broken Access Control:**
 - [ ] [[Broken Access Control]] — IDOR (change a record ID while authenticated as someone else), hidden-endpoint/method bypass, cookie/JWT privilege tampering
@@ -68,7 +70,8 @@ Go input by input from Phase 3. OWASP Top 10:2025 categories this vault has full
 - [ ] [[Clickjacking]] — missing `frame-ancestors`/`X-Frame-Options` on anything with a consequential click
 
 **Other:**
-- [ ] [[File Upload Vulnerabilities]] — extension/MIME bypass, random names, safe serving, storage outside web root
+- [ ] [[File Upload Vulnerabilities]] — extension/MIME bypass, random names, safe serving, storage outside web root → chain with LFI for code execution
+- [ ] [[WAF Bypasses]] — if requests are being blocked (encoding, case toggle, comment insertion)
 
 ## Phase 6 — Escalate to shell
 - [ ] Once something gives code execution or arbitrary file write, get a listener up → [[netcat]]

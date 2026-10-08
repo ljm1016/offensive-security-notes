@@ -56,6 +56,10 @@ Web Application Security → [[Where to even start]] (04 Web Applications):
 - [[Command Injection]] (A05)
 - [[Server Side Template Injection]] (A05)
 - [[SSRF]]
+- [[Remote File Inclusion]] (A05)
+- [[XXE Injection]] (A05)
+- [[WAF Bypasses]] — encoding/obfuscation techniques
+- [[LFI Exploitation Chains]] — upload/log/session poisoning + LFI
 - [[Headers]]
 
 Web (command-syntax and tool cards, live in this folder):

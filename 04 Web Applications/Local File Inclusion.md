@@ -39,3 +39,8 @@ Modern systems and languages reject NULL bytes in paths outright. On old PHP/Apa
 - Anywhere a filename/path is requested: try `../`, `..\\` (Windows), absolute paths (`/etc/passwd`, `C:\Windows\System32`), and URL-encoded variants (`%2e%2e%2f`)
 - Read-access targets: `passwd`, `.env`, `.git/config`, source files, database backups
 - Write-access targets: uploaded files, temp directories, anything that reaches code execution (see [[File Upload Vulnerabilities]])
+
+## Escalation chains
+Once LFI is confirmed, chain it with other vulnerabilities for code execution:
+- **[[LFI Exploitation Chains]]** — upload + LFI, log poisoning + LFI, session poisoning + LFI
+- **[[Remote File Inclusion]]** — include PHP from an attacker-controlled server
