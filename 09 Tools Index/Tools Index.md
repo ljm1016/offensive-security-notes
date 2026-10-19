@@ -29,6 +29,14 @@ Exploitation → [[05 Exploitation]]:
 - [[Metasploit Exploitation|Metasploit]] — Exploit modules, msfvenom
 - [[Active Directory Exploitation]]
 
+Active Directory (command-syntax and tool cards, live in this folder):
+- [[Enum4Linux]] — SMB/LDAP/RPC enumeration, domain/OS/user/share fingerprint
+- [[Kerbrute]] — Kerberos username enumeration + password spraying (unauthenticated)
+- [[smbclient]] — list and read SMB shares, anonymous then authenticated
+- [[Impacket]] — GetNPUsers (AS-REP roast) + secretsdump (DCSync / NTDS)
+- [[Hashcat]] — offline hash cracking; AS-REP 18200, Kerberoast 13100, NTLM 1000
+- [[evil-winrm]] — WinRM shell, password or pass-the-hash
+
 Post Exploitation → [[Post-Exploitation Basics]] (06 Post Exploitation):
 - [[Privilege Escalation]]
 - [[Persistence]]

