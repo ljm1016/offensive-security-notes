@@ -26,6 +26,7 @@ Scanning + Enumeration → [[03 Scanning + Enumeration]]:
 - [[Metasploit Enumeration|Metasploit]] — Auxiliary modules, `check`, database integration
 
 Exploitation → [[05 Exploitation]]:
+- [[File Transfer]] — HTTP/SMB/FTP servers, payload delivery, target-side download methods
 - [[Metasploit Exploitation|Metasploit]] — Exploit modules, msfvenom
 - [[Active Directory Exploitation]]
 
