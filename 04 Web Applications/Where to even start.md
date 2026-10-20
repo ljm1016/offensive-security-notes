@@ -69,9 +69,14 @@ Go input by input from Phase 3. OWASP Top 10:2025 categories this vault has full
 - [ ] [[CORS]] — check `Access-Control-Allow-Origin` on any API the frontend calls cross-origin
 - [ ] [[Clickjacking]] — missing `frame-ancestors`/`X-Frame-Options` on anything with a consequential click
 
+**Advanced/multi-layer attacks:**
+- [ ] [[Deserialization]] — PHP `unserialize()`, Python `pickle`, Java object streams
+- [ ] [[Request Smuggling]] — front-end (proxy) and back-end (app) disagree on request boundaries
+- [ ] [[HTTP Parameter Pollution]] — multiple parameters with same name, different layers pick different one
+
 **Other:**
 - [ ] [[File Upload Vulnerabilities]] — extension/MIME bypass, random names, safe serving, storage outside web root → chain with LFI for code execution
-- [ ] [[WAF Bypasses]] — if requests are being blocked (encoding, case toggle, comment insertion)
+- [ ] [[WAF Bypasses]] — if requests are being blocked (encoding, case toggle, comment insertion, Levels 1-7)
 
 ## Phase 6 — Escalate to shell
 - [ ] Once something gives code execution or arbitrary file write, get a listener up → [[netcat]]

