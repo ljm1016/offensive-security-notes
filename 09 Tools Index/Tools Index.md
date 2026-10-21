@@ -48,10 +48,11 @@ Post Exploitation → [[Post-Exploitation Basics]] (06 Post Exploitation):
 
 Metasploit overview (module types, why/when, basics common to all three phases): [[Metasploit]]
 
-Web Application Security → [[Where to even start]] (04 Web Applications):
+Web Application Security → [[1. Where to even start]] (04 Web Applications):
 - [[HTTP Requests]] — methods, status codes, URL anatomy, Burp Repeater/Caido Replay, curl
 - [[Front End, Back End & State]] — client/server split, cookies/sessions, OWASP Top 10:2025 map, defense recap
 - [[Broken Access Control]] — IDOR, hidden-endpoint/method bypass, cookie tampering (A01)
+- [[Web Login Brute Force]] — Hydra, ffuf, Burp Intruder, rate limiting evasion
 - [[Session & Cookie Security]] — fixation, hijacking, cookie flags (A07)
 - [[MFA & Password Reset]] (A07)
 - [[JWT]] — tampering, validation, revocation (A07)
