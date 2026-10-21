@@ -23,6 +23,7 @@ Scanning + Enumeration → [[03 Scanning + Enumeration]]:
 - [[nmap]]
 - [[netcat]]
 - [[SMB + SNMP Enum]] — enum4linux, smbclient, snmpwalk
+- [[SSH Brute Force & Attacks]] — Hydra, sshpass, Paramiko, key attacks, config exploits
 - [[Metasploit Enumeration|Metasploit]] — Auxiliary modules, `check`, database integration
 
 Exploitation → [[05 Exploitation]]:
