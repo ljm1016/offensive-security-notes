@@ -45,3 +45,88 @@ The token decides which account changes — it must be random, single-use, and s
 | Reset bypasses other controls | Reset logs straight in past MFA; old sessions keep working | Require the second factor; end existing sessions on reset |
 
 Recovery is a second way into the account — it needs the same strength as the front door, not a weaker shortcut.
+
+---
+
+## Password Reset Attack Vectors
+
+### Email-Based Reset
+User receives reset link via email containing a token or temporary link.
+
+**Vulnerabilities:**
+- Predictable tokens (sequential, time-based, weak entropy)
+- Tokens valid too long (should expire in minutes)
+- Token not bound to account (can reset any account with the same token)
+- Referer/analytics leaking token from URL
+- Error messages revealing account existence
+
+**Exploitation example (predictable tokens):**
+```php
+// Vulnerable code
+$token = mt_rand(100, 200);  // Only 100 possible values
+$query->execute();
+```
+
+Using Burp Intruder:
+1. Capture password reset request
+2. Send to Intruder
+3. Generate token list (100-200)
+4. Brute force the reset token
+5. Successful reset = weak token vulnerability
+
+### SMS-Based Reset
+Reset code delivered via SMS to user's phone.
+
+**Vulnerabilities:**
+- Predictable codes (sequential, weak randomness)
+- SIM swapping attacks (attacker redirects SMS)
+- Codes valid too long
+- Limited brute-force protection (no rate limiting)
+- Interception during transmission
+
+### Security Question-Based Reset
+User answers pre-configured questions to verify identity.
+
+**Vulnerabilities:**
+- Common questions with guessable answers
+- PII easily found via OSINT
+- Multiple attempts without lockout
+- Same questions reset by multiple users (low entropy)
+
+### Common Password Reset Flaws
+
+| Flaw | Impact | Detection |
+| --- | --- | --- |
+| **Predictable tokens** | Brute force to any account | Tokens follow sequential/time-based pattern |
+| **Long token expiry** | Stolen tokens remain valid for days | Test token validity after hours/days |
+| **No account binding** | Same token resets multiple accounts | Change reset URL account parameter |
+| **Information disclosure** | Enumerate existing accounts | Different responses for valid/invalid emails |
+| **Insecure transport** | Token intercepted in transit | HTTP instead of HTTPS, token in logs |
+| **No rate limiting** | Unlimited brute force attempts | Spam requests without delays |
+| **No session invalidation** | Old sessions stay active after reset | Login with old session after password reset |
+
+### Testing Password Reset
+
+**Check token strength:**
+```bash
+# Capture multiple reset tokens
+# Look for patterns: sequential, timestamp-based, weak entropy
+
+# Test token reusability
+curl "https://target.com/reset?token=CAPTURED_TOKEN"
+# Use same token multiple times - should work only once
+```
+
+**Test account binding:**
+```bash
+# Get reset token for admin@example.com
+# Try using token with different user parameter
+# Vulnerable if you can reset another account's password
+```
+
+**Test information disclosure:**
+```bash
+# Submit valid email → response
+# Submit invalid email → different response?
+# Timing differences reveal account existence
+```

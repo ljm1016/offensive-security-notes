@@ -12,6 +12,7 @@ Recon & OSINT → [[01 Getting Started]]:
 - [[Censys]]
 - [[Shodan]]
 - [[Recon-ng]]
+- [[Wayback Machine & Google Dorks]] — Internet Archive snapshots, advanced search operators
 - [[Spidering]] — BuiltWith, [[gospider]], [[Hakrawler]]
 - [[Organization Research]]
 - [[People OSINT]] — hunter.io, Gather Contacts, sherlock, maigret, Dehashed, HIBP
@@ -54,6 +55,7 @@ Web Application Security → [[1. Where to even start]] (04 Web Applications):
 - [[Front End, Back End & State]] — client/server split, cookies/sessions, OWASP Top 10:2025 map, defense recap
 - [[Broken Access Control]] — IDOR, hidden-endpoint/method bypass, cookie tampering (A01)
 - [[Web Login Brute Force]] — Hydra, ffuf, Burp Intruder, rate limiting evasion
+- [[Basic Authentication Brute Force]] — Base64 encoding, curl, Hydra, ffuf, rate limiting bypass
 - [[Session & Cookie Security]] — fixation, hijacking, cookie flags (A07)
 - [[MFA & Password Reset]] (A07)
 - [[JWT]] — tampering, validation, revocation (A07)
