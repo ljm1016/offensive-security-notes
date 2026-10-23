@@ -110,19 +110,88 @@ ffuf -w auth.txt \
 
 ## Brute Forcing with Burp Intruder
 
-### Workflow
-1. **Capture a request** to the protected endpoint
-2. **Send to Intruder**
-3. **Set payload position** in the Authorization header:
+### Detailed Workflow (RFC 7617 Compliant)
+
+**Step 1: Capture the request**
+```
+GET /admin HTTP/1.1
+Host: target.com
+Authorization: Basic YWRtaW46cGFzc3dvcmQxMjM=
+```
+
+Right-click and send to Intruder.
+
+**Step 2: Decode and position the payload**
+1. Go to Positions tab
+2. Decode the base64 string in Authorization header: `admin:password123`
+3. Highlight the decoded string
+4. Click "Add §" button to set payload position around the credentials
+
+Your header should look like:
+```
+Authorization: Basic §admin:password123§
+```
+
+**Step 3: Configure Payloads**
+1. Go to Payloads tab
+2. Set payload type: **Simple list**
+3. Load wordlist: `/usr/share/wordlists/SecLists/Passwords/Common-Credentials/500-worst-passwords.txt`
+
+**Step 4: Add Payload Processing Rules**
+Payload processing automatically transforms each payload before sending:
+
+1. **Rule 1: Prepend username**
+   - Type: Add prefix
+   - Value: `admin:` (replace "admin" with target username)
+   - This converts `password123` → `admin:password123`
+
+2. **Rule 2: Base64 encode**
+   - Type: Encode
+   - Encoding: Base64
+
+3. **Rule 3: Remove padding (optional)**
+   - Type: Find and replace
+   - Find: `=`
+   - Replace: (leave blank)
+   - **Note:** Some systems keep padding; test both approaches
+
+**Step 5: Configure Encoding**
+In the Payload encoding section at bottom:
+- Remove the `=` character from URL encoding list (since we're base64 encoding)
+- Leave other special characters as-is
+
+**Step 6: Run the attack**
+1. Click "Start Attack"
+2. Attack takes ~1-2 minutes for 500 passwords
+3. **Look for HTTP 200 status code** (success) vs 401 (failure)
+
+**Step 7: Decode successful credentials**
+When you find a 200 response:
+1. Copy the Authorization header value
+2. Decode from base64:
+   ```bash
+   echo "YWRtaW46cGFzc3dvcmQxMjM=" | base64 -d
+   # Output: admin:password123
    ```
-   Authorization: Basic §YWRtaW46cGFzc3dvcmQxMjM=§
-   ```
-4. **Create payloads:**
-   - Load username list
-   - Load password list
-   - Use "Cluster bomb" attack type (all username × password combinations)
-5. **Process payloads:** Add rule to Base64-encode before sending
-6. **Sort results** by status code (200 = success, 401 = failure)
+3. Use the decoded credentials to log in
+
+### Quick Intruder Setup (Visual Reference)
+```
+Positions tab:
+  Authorization: Basic §PAYLOAD§
+
+Payloads tab:
+  Type: Simple list
+  Wordlist: 500-worst-passwords.txt
+
+Payload processing:
+  Rule 1: Add prefix "admin:"
+  Rule 2: Encode (Base64)
+
+Attack:
+  Success = HTTP 200
+  Failure = HTTP 401
+```
 
 ### Manual Repeater approach
 ```
