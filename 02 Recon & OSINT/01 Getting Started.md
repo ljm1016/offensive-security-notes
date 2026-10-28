@@ -1,6 +1,6 @@
 #osint #methodology
 
-Sequential checklist for a fresh recon target — an org name or a domain, nothing else yet. Same idea as [[11.1 Where to even start]] and web's [[Where to even start]]: work top to bottom, pull detail from the linked notes, stay passive as long as you can.
+Sequential checklist for a fresh recon target — an org name or a domain, nothing else yet. Same idea as [[11.1 Where to even start]] and web's [[1. Where to even start]]: work top to bottom, pull detail from the linked notes, stay passive as long as you can.
 
 ## Before you start
 - [ ] Confirm scope and authorization — which assets/accounts/providers/time window are actually covered → [[Collection Methods & Evidence]]

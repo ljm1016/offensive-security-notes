@@ -25,4 +25,4 @@ wappalyzer https://target.com
 - Version numbers are often uncertain (shown with a `?`) — verify with manual probing if the version matters for CVE selection
 
 ## In the workflow
-[[Where to even start]] Phase 1 — after you've opened the page in a browser and viewed the source, Wappalyzer gives you the stack, then you search for known CVEs before Phase 2 recon starts.
+[[1. Where to even start]] Phase 1 — after you've opened the page in a browser and viewed the source, Wappalyzer gives you the stack, then you search for known CVEs before Phase 2 recon starts.

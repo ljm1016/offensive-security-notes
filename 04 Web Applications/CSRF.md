@@ -65,3 +65,6 @@ Three independent checks, not one: the request must be the right method, from th
 
 ## Interaction with XSS
 **XSS on the same site defeats CSRF defenses entirely** — a script running inside the trusted page can read the CSRF token itself and send the forged request from inside the origin. CSRF protections assume the attacker can only make the browser *send* a request blind, not read the page or its tokens; see [[Cross-Site Scripting]] for why that assumption breaks.
+
+## Scope: this assumes the browser auto-attaches the credential
+Everything above relies on the browser sending the cookie *for* the victim without being asked. An app that authenticates via an `Authorization` header token instead (JS reads it from storage and sets the header itself, common with JWTs) isn't exposed this way — a cross-origin page can't make the browser attach a header it never auto-sends. That's not a stronger app; it's a different credential-delivery model with its own weak point. See [[JWT]] for the trade-off (CSRF immunity swapped for full token exposure to any same-origin XSS).

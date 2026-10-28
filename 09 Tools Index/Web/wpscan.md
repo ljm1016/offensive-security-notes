@@ -35,9 +35,9 @@ Free token from wpscan.com; adds CVE details and severity scores. Rate-limited w
 ```
 
 ## In the workflow
-[[Where to even start]] Phase 1 — if `whatweb` shows WordPress, run `wpscan` in parallel with the initial recon tools. It'll identify outdated plugins/themes (often the path to code execution) faster than manual enumeration.
+[[1. Where to even start]] Phase 1 — if `whatweb` shows WordPress, run `wpscan` in parallel with the initial recon tools. It'll identify outdated plugins/themes (often the path to code execution) faster than manual enumeration.
 
 ## Notes
 - Scanner is passive (no actual exploitation) — safe to run on any target
 - Detects *versions*, not necessarily exploitability — a plugin version might have a CVE that requires a specific configuration or authentication
-- [[Where to even start]] Phase 4 — once you know which plugins are outdated, Google or searchsploit the exact version for POCs
+- [[1. Where to even start]] Phase 4 — once you know which plugins are outdated, Google or searchsploit the exact version for POCs

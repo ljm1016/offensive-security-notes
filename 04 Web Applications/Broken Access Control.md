@@ -115,6 +115,6 @@ if USERS[user]["role"] != "admin":
 Editing a cookie only grants privilege when the server wrongly trusts its contents. Any value the client can set (cookie, hidden form field, JSON body key) is not a security boundary on its own.
 
 ## Where this comes up during testing
-- Any URL/body/query param that looks like an ID, record number, username, or filename → try changing it to another valid value while authenticated as someone else → [[Where to even start]] Phase 5
+- Any URL/body/query param that looks like an ID, record number, username, or filename → try changing it to another valid value while authenticated as someone else → [[1. Where to even start]] Phase 5
 - Try every HTTP method a route might accept (GET/POST/PUT/DELETE), not just the one the UI uses
 - Check cookies and JWTs ([[JWT]]) for claims (`role`, `admin`, `isAdmin`) the client can edit — see if the server actually re-validates them

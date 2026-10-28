@@ -33,7 +33,7 @@ cewl https://target.com -w custom-wordlist.txt -d 3
 ```
 
 ## In the workflow
-[[Where to even start]] Phase 2 — `gobuster` and `ffuf` use these wordlists to discover paths, params, and vhosts. Start with `common.txt`; if it's too noisy or too quiet, swap to `big.txt` or domain-specific lists.
+[[1. Where to even start]] Phase 2 — `gobuster` and `ffuf` use these wordlists to discover paths, params, and vhosts. Start with `common.txt`; if it's too noisy or too quiet, swap to `big.txt` or domain-specific lists.
 
 ## Notes
 - Different lists have different coverage (common.txt ~4700 entries, big.txt ~20k)

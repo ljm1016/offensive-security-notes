@@ -11,7 +11,7 @@ Interactive proxy and web application testing framework — intercepts requests 
 | Decode a cookie | Base64 decoder in DevTools | Burp Decoder tab (handles URL, HTML, Base64, Hex, etc.) |
 | Check for hidden fields | View source | Repeater shows you the full response |
 
-**Burp is your "middle ground"** — more interactive than curl, less heavy than writing an exploitation script. Critical for [[Where to even start]] Phase 3 (cataloging inputs) and Phase 5 (testing each one).
+**Burp is your "middle ground"** — more interactive than curl, less heavy than writing an exploitation script. Critical for [[1. Where to even start]] Phase 3 (cataloging inputs) and Phase 5 (testing each one).
 
 ## Installation & setup
 
@@ -225,7 +225,7 @@ Shortcuts:
 ```
 
 ## See also
-- [[Where to even start]] Phase 3 & 5 — when Burp fits into your testing workflow
+- [[1. Where to even start]] Phase 3 & 5 — when Burp fits into your testing workflow
 - [[HTTP Requests]] — understanding what you're intercepting
 - [[SQL Injection]], [[Cross-Site Scripting]], [[CSRF]] — testing specific vulnerabilities
 - [[Payload Reference]] — payloads to test with Repeater
