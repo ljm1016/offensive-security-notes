@@ -11,7 +11,7 @@ An upload endpoint accepts a file; unsafe handling can leak or execute it.
 | Filename validation | Rejects `shell.php`, accepts `shell.txt` | Try case-variation (`shell.PhP`), null bytes (`shell.php%00.txt`), spaces (`shell.php `) |
 
 ## Exploitation
-Once uploaded, code execution depends on how the server handles the file:
+Once the uploaded file executes, the payload you reach for is a [[Web Shells|web shell]] (then upgrade to a [[Reverse Shells|reverse shell]]). Whether it executes at all depends on how the server handles the file:
 | Scenario | How to trigger | Mitigation |
 | --- | --- | --- |
 | Uploaded to web root, direct access | `GET /uploads/shell.php` → code runs | Store uploads *outside* the web root, or serve with strict `Content-Type: application/octet-stream` |

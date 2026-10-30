@@ -10,7 +10,7 @@ Reverse is what you'll use almost always. Get your listener running *before* tri
 ```bash
 nc -lvnp 4444
 ```
-See [[netcat]] for listener/file-transfer detail.
+See [[netcat]] for listener/file-transfer detail. If you're triggering the callback through a [[Web Shells|web shell]] or other HTTP-parameter RCE, URL-encode the one-liner (`%26` for each `&`).
 
 ## Common one-liners
 ```bash
