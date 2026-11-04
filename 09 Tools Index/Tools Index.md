@@ -56,6 +56,7 @@ Web Application Security → [[1. Where to even start]] (04 Web Applications):
 - [[Broken Access Control]] — IDOR, hidden-endpoint/method bypass, cookie tampering (A01)
 - [[Web Login Brute Force]] — Hydra, ffuf, Burp Intruder, rate limiting evasion
 - [[Basic Authentication Brute Force]] — Base64 encoding, curl, Hydra, ffuf, rate limiting bypass
+- [[WordPress Enumeration]] — version detection, plugin/theme enumeration, user enumeration, WPScan
 - [[Session & Cookie Security]] — fixation, hijacking, cookie flags (A07)
 - [[MFA & Password Reset]] (A07)
 - [[JWT]] — tampering, validation, revocation (A07)
