@@ -35,6 +35,7 @@ Exploitation → [[05 Exploitation]]:
 - [[SMB/LLMNR Poisoning]] — Responder-based LLMNR/NBT-NS poisoning, NTLMv2 hash capture and cracking
 - [[SMB Relay Attacks]] — relaying captured NetNTLM to gain immediate SMB access
 - [[PXE Boot Exploitation]] — credential recovery from bootable WIM images via TFTP
+- [[MDT/SCCM PXE Boot Exploitation]] — credential extraction from MDT deployment images, bootstrap.ini harvesting
 - [[Active Directory Exploitation]]
 
 Active Directory (command-syntax and tool cards, live in this folder):
