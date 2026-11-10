@@ -34,6 +34,7 @@ Exploitation → [[05 Exploitation]]:
 - [[LDAP Pass-back Attacks]] — credential theft via rogue LDAP servers
 - [[SMB/LLMNR Poisoning]] — Responder-based LLMNR/NBT-NS poisoning, NTLMv2 hash capture and cracking
 - [[SMB Relay Attacks]] — relaying captured NetNTLM to gain immediate SMB access
+- [[PXE Boot Exploitation]] — credential recovery from bootable WIM images via TFTP
 - [[Active Directory Exploitation]]
 
 Active Directory (command-syntax and tool cards, live in this folder):
