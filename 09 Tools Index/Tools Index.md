@@ -26,6 +26,9 @@ Scanning + Enumeration → [[03 Scanning + Enumeration]]:
 - [[SMB + SNMP Enum]] — enum4linux, smbclient, snmpwalk
 - [[SSH Brute Force & Attacks]] — Hydra, sshpass, Paramiko, key attacks, config exploits
 - [[Metasploit Enumeration|Metasploit]] — Auxiliary modules, `check`, database integration
+- [[AD Enumeration with Runas]] — credential injection for non-domain-joined machines, SYSVOL verification
+- [[PowerShell AD Enumeration]] — AD-RSAT cmdlets, user/group/computer enumeration, password policy
+- [[Bloodhound Analysis]] — graph-based AD attack path discovery, Sharphound collection, Neo4j setup
 
 Exploitation → [[05 Exploitation]]:
 - [[File Transfer]] — HTTP/SMB/FTP servers, payload delivery, target-side download methods
