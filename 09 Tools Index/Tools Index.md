@@ -30,6 +30,9 @@ Scanning + Enumeration → [[03 Scanning + Enumeration]]:
 - [[PowerShell AD Enumeration]] — AD-RSAT cmdlets, user/group/computer enumeration, password policy
 - [[Bloodhound Analysis]] — graph-based AD attack path discovery, Sharphound collection, Neo4j setup
 
+Windows Fundamentals → [[08 Windows Privilege Escalation]]:
+- [[Windows NT Fundamentals]] — kernel/user mode, processes, SIDs, tokens, privileges, integrity levels, UAC
+
 Exploitation → [[05 Exploitation]]:
 - [[File Transfer]] — HTTP/SMB/FTP servers, payload delivery, target-side download methods
 - [[Metasploit Exploitation|Metasploit]] — Exploit modules, msfvenom
@@ -39,6 +42,10 @@ Exploitation → [[05 Exploitation]]:
 - [[SMB Relay Attacks]] — relaying captured NetNTLM to gain immediate SMB access
 - [[PXE Boot Exploitation]] — credential recovery from bootable WIM images via TFTP
 - [[MDT/SCCM PXE Boot Exploitation]] — credential extraction from MDT deployment images, bootstrap.ini harvesting
+- [[Kerberoasting]] — service account ticket cracking via offline Kerberos attacks
+- [[AS-REP Roasting]] — pre-auth disabled accounts, TGT cracking
+- [[Kerberos Delegation Attacks]] — unconstrained/constrained delegation abuse, S4U exploitation
+- [[Pass the Hash]] — NTLM lateral movement without plaintext passwords
 - [[Active Directory Exploitation]]
 
 Active Directory (command-syntax and tool cards, live in this folder):
@@ -56,6 +63,13 @@ Post Exploitation → [[Post-Exploitation Basics]] (06 Post Exploitation):
 - [[Pivoting]]
 - [[Cleanup & Reporting]]
 - [[Metasploit Post-Exploitation|Metasploit]] — Post modules, sessions, autoroute
+
+Cloud Security → [[07 Cloud Security]]:
+- [[Cloud Fundamentals]] — cloud architecture, service models, shared responsibility, organizational hierarchy, resources
+- [[Cloud Metadata Service Attacks]] — SSRF → IMDS exploitation, credential theft, IMDSv1/v2
+- [[Cloud IAM & Identity]] — AWS/Azure/GCP IAM models, privilege escalation, persistence
+- [[Cloud Privilege Escalation]] — exploiting IAM misconfigurations, PassRole abuse, cross-account escalation
+- [[Cloud Lateral Movement]] — service-to-service pivoting, cross-account movement, hybrid networking
 
 Metasploit overview (module types, why/when, basics common to all three phases): [[Metasploit]]
 

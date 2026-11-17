@@ -102,12 +102,12 @@ alice' AND unicode(substr((SELECT flag FROM secrets LIMIT 1),1,1))>77-- -
 Repeat for position 2, 3, etc. with binary search on the value (>77? >103? etc.) until you narrow it to the exact byte.
 
 ### Common gotchas
-| Gotcha | Symptom | Fix |
-| --- | --- | --- |
-| Unbalanced parens | `WHERE name='admin'))` has extra `)` → query errors → false response | Confirm FALSE means "condition false," not "query broke" — test with `1=1` and `1=2` first |
-| Wrong function for engine | `ASCII()` in SQLite → doesn't exist → everything returns false | Fingerprint first, use right function: `substr`/`unicode` for SQLite, `substring`/`ascii` for MySQL/Postgres |
-| Concatenation syntax | `CONCAT(a,b)` in SQLite → doesn't exist | Use `||`: `SELECT flag \|\| '' FROM secrets LIMIT 1` |
-| Query context | Injection in a numeric field breaks differently than string field | Test both directions (`' AND 1=1` vs `1 OR 1=1`) to find which syntax fits |
+| Gotcha                    | Symptom                                                              | Fix                                                                                                          |     |                                               |
+| ------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | --- | --------------------------------------------- |
+| Unbalanced parens         | `WHERE name='admin'))` has extra `)` → query errors → false response | Confirm FALSE means "condition false," not "query broke" — test with `1=1` and `1=2` first                   |     |                                               |
+| Wrong function for engine | `ASCII()` in SQLite → doesn't exist → everything returns false       | Fingerprint first, use right function: `substr`/`unicode` for SQLite, `substring`/`ascii` for MySQL/Postgres |     |                                               |
+| Concatenation syntax      | `CONCAT(a,b)` in SQLite → doesn't exist                              | Use `                                                                                                        |     | `: `SELECT flag \|\| '' FROM secrets LIMIT 1` |
+| Query context             | Injection in a numeric field breaks differently than string field    | Test both directions (`' AND 1=1` vs `1 OR 1=1`) to find which syntax fits                                   |     |                                               |
 
 ## Testing — direct and blind
 - **Reflected/error-based:** `'`, `"`, `1=1`, `OR 1=1`, comment sequences (`--`, `#`, `/* */`) in every text/numeric input, especially IDs and search fields
