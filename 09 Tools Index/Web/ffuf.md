@@ -18,3 +18,10 @@ Simple example:
 ```
 ffuf -w /path/to/wordlist.txt -u https://example.com/FUZZ
 ```
+
+Rate limiting:
+```
+ffuf /wordlist.txt -u https://site.com/FUZZ -rate 50
+```
+
+^ limits to 50 requests per second20

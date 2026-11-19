@@ -116,6 +116,7 @@ Web (command-syntax and tool cards, live in this folder):
 - [[Wordlists]] — dictionaries for fuzzing
 - [[sqlmap]] — automated SQL injection detection and exploitation
 - [[Burp Suite]] — interactive proxy, request tampering, systematic testing
+- [[Chankro]] — PHP/binary polyglot shell, bypasses disable_functions via pcntl_*, GIF header MIME bypass
 
 C2:
 - [[Armitage]]
